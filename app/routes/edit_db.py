@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ..models import db
+from app.models import db
 from sqlalchemy import select, insert
 
 router = APIRouter("/edit", tags=["Edit"])
