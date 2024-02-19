@@ -1,10 +1,9 @@
 from fastapi import FastAPI
-from edit_db import router as edit_router
-
+from .edit_db import router 
 
 
 app = FastAPI(title="College Grades Project")
-app.include_router(edit_router) 
+app.include_router(router) 
 
 @app.get("/")
 async def get_start():
