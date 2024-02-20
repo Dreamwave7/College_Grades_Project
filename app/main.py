@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .edit_db import router 
+from edit_db import router 
 
 
 app = FastAPI(title="College Grades Project")
