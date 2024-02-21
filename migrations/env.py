@@ -4,7 +4,8 @@ from logging.config import fileConfig
 from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
-from models.db import Base, Subjects, Students, Grades, Groups
+from app.database.models import Subjects, Students, Grades, Groups
+from app.database.db import Base
 from alembic import context
 
 # this is the Alembic Config object, which provides

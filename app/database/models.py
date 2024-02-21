@@ -1,21 +1,7 @@
-from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine, AsyncSession
+from .db import Base
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 from sqlalchemy import String, Integer, Boolean, ForeignKey
 from sqlalchemy.types import DateTime
-
-DBURL = "postgresql+asyncpg://wmbufrxt:kznk4qJfbU8uiVGFubDWKfR0fAKxx6pX@trumpet.db.elephantsql.com/wmbufrxt"
-
-engine = create_async_engine(DBURL)
-
-Session = async_sessionmaker(engine)
-
-async def get_session():
-    async with Session() as connect:
-        return connect
-
-
-class Base(DeclarativeBase):
-    pass
 
 
 class Students(Base):
