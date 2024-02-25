@@ -5,5 +5,4 @@ class OrmBaseModel(BaseModel):
         from_attributes = True
 
 class TeachersResponse(OrmBaseModel):
-    id: int
     name: str
