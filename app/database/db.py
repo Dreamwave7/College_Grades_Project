@@ -10,7 +10,7 @@ Session = async_sessionmaker(engine)
 
 async def get_session():
     async with Session() as connect:
-        return connect
+        yield connect
 
 
 class Base(DeclarativeBase):
