@@ -7,9 +7,6 @@ class OrmBaseModel(BaseModel):
 class TeachersScheme(OrmBaseModel):
     name: str
 
-class TestScheme(OrmBaseModel):
-    test:str
+class GroupScheme(OrmBaseModel):
+    name: str
 
-class TeachersResponse(OrmBaseModel):
-    id: int
-    name:str
