@@ -18,3 +18,4 @@ async def get_groups(session:AsyncSession):
     executing = await session.execute(query)
     result = [group[0] for group in executing.all()]
     return result
+

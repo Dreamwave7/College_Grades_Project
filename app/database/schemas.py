@@ -10,3 +10,7 @@ class TeachersScheme(OrmBaseModel):
 class GroupScheme(OrmBaseModel):
     name: str
 
+class StudentScheme(OrmBaseModel):
+    name:str
+    lastname:str
+    group_id:int
