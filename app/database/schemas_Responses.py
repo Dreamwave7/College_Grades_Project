@@ -16,6 +16,13 @@ class StudentResponse(OrmBaseModel):
     lastname:str
     group_id:int
 
+class SubjectResponse(OrmBaseModel):
+    id:int
+    name:str
+    teacher_id:int
+
+
+
 
 
 

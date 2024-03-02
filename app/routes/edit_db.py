@@ -6,7 +6,8 @@ from app.database.db import get_session
 from app.database.schemas import *
 from sqlalchemy import select, insert
 from app.service import teachers_service as ts
-from app.service import groups_services as gs
+from app.service import groups_service as gs
+from app.service.subject_service import SubjectService
 from app.service.students_service import StudentsService
 
 router = APIRouter(prefix="/edit")
@@ -52,3 +53,14 @@ async def create_student(student: StudentScheme, session=Depends(get_session)):
 async def get_students(session=Depends(get_session)):
     result = await StudentsService.get_all_students(session)
     return result
+
+@router.post("/subjects", tags=["Subjects"], response_model=SubjectResponse)
+async def create_subject(subject:SubjectScheme, session = Depends(get_session)):
+    result = await SubjectService.create_subject(subject, session)
+    return result
+
+@router.get("/subjects",tags= ["Subjects"], response_model=List[SubjectResponse])
+async def get_subjects(session = Depends(get_session)):
+    result = await SubjectService.get_subjects(session)
+    return result  
+

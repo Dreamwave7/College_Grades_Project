@@ -16,6 +16,7 @@ async def add_teacher(teacher: TeachersScheme, session: AsyncSession):
 
 async def get_teachers(session: AsyncSession):
     query = select(Teachers)
+    test = Teachers
     executing = await session.execute(query)
     result = executing.all()
     teachers_list = [teacher[0] for teacher in result]

@@ -11,7 +11,11 @@ class Students(Base):
     lastname: Mapped[str] = mapped_column(String(length=20), nullable=False)
     group_id: Mapped[int] = mapped_column(ForeignKey("groupss.id"), nullable=False)
 
-
+class Teachers(Base):
+    __tablename__ = "teachers"
+    id: Mapped[int] = mapped_column(Integer(), primary_key=True)
+    name: Mapped[str] = mapped_column(String(length=30))
+    
 class Groups(Base):
     __tablename__ = "groupss"
     id: Mapped[int] = mapped_column(Integer(), primary_key=True)
@@ -34,7 +38,3 @@ class Grades(Base):
     date: Mapped[DateTime] = mapped_column(DateTime)
 
 
-class Teachers(Base):
-    __tablename__ = "teachers"
-    id: Mapped[int] = mapped_column(Integer(), primary_key=True)
-    name: Mapped[str] = mapped_column(String(length=30))
