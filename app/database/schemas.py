@@ -24,4 +24,3 @@ class GradesScheme(OrmBaseModel):
     grade: int
     student_id:int
     subject_id:int
-    date: str

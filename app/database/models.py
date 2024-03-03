@@ -35,6 +35,6 @@ class Grades(Base):
     grade: Mapped[int] = mapped_column(Integer(), nullable=False)
     student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False)
     subject_id: Mapped[int] = mapped_column(ForeignKey("subjects.id"), nullable=False)
-    date: Mapped[DateTime] = mapped_column(DateTime)
+    date: Mapped[DateTime] = mapped_column(DateTime())
 
 

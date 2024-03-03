@@ -9,6 +9,7 @@ from app.service import teachers_service as ts
 from app.service import groups_service as gs
 from app.service.subject_service import SubjectService
 from app.service.students_service import StudentsService
+from app.service.grades_service import GradesService
 
 router = APIRouter(prefix="/edit")
 
@@ -49,7 +50,7 @@ async def create_student(student: StudentScheme, session=Depends(get_session)):
     return adding
 
 
-@router.get("/students", tags=["Students"], response_model=list[StudentScheme])
+@router.get("/students", tags=["Students"], response_model=list[StudentResponse])
 async def get_students(session=Depends(get_session)):
     result = await StudentsService.get_all_students(session)
     return result
@@ -63,4 +64,9 @@ async def create_subject(subject:SubjectScheme, session = Depends(get_session)):
 async def get_subjects(session = Depends(get_session)):
     result = await SubjectService.get_subjects(session)
     return result  
+
+@router.post("/grades",tags=["Grades"])#, response_model=GradesScheme)
+async def create_grade(grade:GradesScheme, session = Depends(get_session)):
+    result = await GradesService.create_grade(grade, session)
+    return result
 
