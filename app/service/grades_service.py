@@ -9,8 +9,15 @@ import datetime
 class GradesService:
     @staticmethod
     async def create_grade(grade:GradesScheme, session:AsyncSession):
-        query = insert(Grades).values(**grade.model_dump(), date = datetime.datetime.now().date())
+        query = insert(Grades).values(**grade.model_dump(), date = datetime.datetime.now().date()).returning(Grades.grade, Grades.student_id,Grades.subject_id)
         adding = await session.execute(query)
         await session.commit()
-        return adding
+        return adding.mappings().first()
+
+    @staticmethod
+    async def get_all_grades(session:AsyncSession):
+        query = select(Grades)
+        executing = await session.execute(query)
+        result = [grade[0] for grade in executing.fetchall()]
+        return result
         

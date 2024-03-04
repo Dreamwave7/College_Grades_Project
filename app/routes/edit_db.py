@@ -65,8 +65,14 @@ async def get_subjects(session = Depends(get_session)):
     result = await SubjectService.get_subjects(session)
     return result  
 
-@router.post("/grades",tags=["Grades"])#, response_model=GradesScheme)
+@router.post("/grades",tags=["Grades"], response_model=GradesScheme)
 async def create_grade(grade:GradesScheme, session = Depends(get_session)):
     result = await GradesService.create_grade(grade, session)
+    return result
+
+
+@router.get("/grades", tags = ["Grades"], response_model=List[GradesScheme])
+async def get_grades(session = Depends(get_session)):
+    result = await GradesService.get_all_grades(session)
     return result
 
