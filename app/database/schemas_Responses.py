@@ -21,7 +21,11 @@ class SubjectResponse(OrmBaseModel):
     name:str
     teacher_id:int
 
-
+class GradeQueryResponse(OrmBaseModel):
+    Grade: int
+    Student_name: str
+    Group: str
+    Teacher: str
 
 
 

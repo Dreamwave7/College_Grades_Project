@@ -77,7 +77,7 @@ async def get_grades(session = Depends(get_session)):
     return result
 
 
-@router.get("/test_query", tags=["Grades"])
+@router.get("/test_query", tags=["Grades"], response_model=List[GradeQueryResponse])
 async def get_students_grades(session = Depends(get_session)):
     result = await GradesService.get_grades_for_students(session)
     return result
