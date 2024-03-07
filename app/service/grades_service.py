@@ -1,4 +1,4 @@
-from sqlalchemy import select, insert, and_
+from sqlalchemy import delete, select, insert, and_
 from app.database.schemas import *
 from app.database.models import *
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -11,7 +11,6 @@ import pprint
 class GradesService:
     @staticmethod
     async def create_grade(grade: GradesScheme, session: AsyncSession):
-        # query = insert(Grades).values(**grade.model_dump(), date = datetime.datetime.now().date()).returning(Grades.grade, Grades.student_id,Grades.subject_id)
         query = (
             insert(Grades)
             .values(
@@ -40,7 +39,9 @@ class GradesService:
                 Grades.grade.label("Grade"),
                 Students.name.label("Student_name"),
                 Groups.name.label("Group"),
-                Teachers.name.label("Teacher")).where(Grades.grade == 6)
+                Teachers.name.label("Teacher"),
+            )
+            .where(Grades.grade == 6)
             .select_from(Grades)
             .join(Students, Students.id == Grades.student_id)
             .join(Groups)
@@ -48,4 +49,11 @@ class GradesService:
             .join(Teachers)
         )
         executing = await session.execute(query)
-        return(executing)
+        return executing
+
+    @staticmethod
+    async def delete_grade(id_grade: int, session: AsyncSession):
+        query = delete(Grades).where(Grades.id == id_grade)
+        executing = await session.execute(query)
+        await session.commit()
+        return {"delete": "success"}

@@ -8,6 +8,7 @@ engine = create_async_engine(DBURL)
 
 Session = async_sessionmaker(engine)
 
+
 async def get_session():
     async with Session() as connect:
         yield connect
@@ -15,4 +16,3 @@ async def get_session():
 
 class Base(DeclarativeBase):
     pass
-

@@ -1,4 +1,4 @@
-from sqlalchemy import select, insert
+from sqlalchemy import delete, select, insert
 from app.database.schemas import *
 from app.database.models import *
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -26,3 +26,10 @@ class StudentsService:
         executing = await session.execute(query)
         result = executing.fetchall()
         return [student[0] for student in result]
+
+    @staticmethod
+    async def delete_student(id_student: int, session: AsyncSession):
+        query = delete(Students).where(Students.id == id_student)
+        executing = await session.execute(query)
+        await session.commit()
+        return {"delete": "success"}
